@@ -1,5 +1,35 @@
-table {
-  border: 2px solid black;
-  padding: 20px; }
+.easy, .medium, .difficuilt {
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid grey;
+  background-color: #fafafa;
+  padding: 20px;
+  margin: 20px;
+  text-indent: 20px;
+   }
 
-/*# sourceMappingURL=project.css.map */
+.easy {
+  border-left: 3px solid #00b33c; }
+
+.medium {
+  border-left: 3px solid #0000cc; }
+
+.difficuilt {
+  border-left: 3px solid #e60000; }
+
+#design {
+  margin: auto;
+  border-spacing: 10px;
+  }
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
+  border-radius: 5px 5px 0 0;
+  width: 200px;
+}

@@ -1,5 +1,30 @@
 h1 {
-	padding: 70px;
+	text-indent: 40px;
+	padding: 40px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid grey;
+}
+ul > li {
+	background-color: #fafafa;
+	border-bottom: 1px solid grey;
+	border-left: 5px solid #03cc85;
+	border-radius: 10px;
+	width: 200px;
+	text-indent: 20px;
+	padding: 3px;
+	list-style: none;
+	margin: 10px;
+}
+.contact{
+	background-color: #fafafa;
+	border-bottom: 1px solid grey;
+	border-left: 5px solid #03cc85;
+	border-radius: 10px;
+	width: 300px;
+	text-indent: 20px;
+	padding: 3px;
+	list-style: none;
+	margin: 10px;
 }
 /*align anything center*/
 .center {
@@ -11,7 +36,7 @@ h1 {
 	color: #aaa;
 	font-size: 30px;
 	text-decoration: none;
-	padding: 6px;
+	padding: 20px;
 }
  /* Style the sidebar - fixed full height */
 

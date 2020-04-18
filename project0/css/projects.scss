@@ -1,5 +1,32 @@
+
+
+$width: 3px ;
+%project{
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid grey;
+    background-color: #fafafa;
+    padding: 20px;
+    margin: 20px;
+    text-indent: 20px
+}
+
+.easy {
+    @extend %project;
+    border-left: $width solid #00b33c;
+}
+
+.medium {
+    @extend %project;
+    border-left:$width solid #0000cc;
+}
+
+.difficuilt {
+    @extend %project;
+    border-left:$width solid #e60000;
+}
 table {
-	border: 2px solid black;
-	padding: 20px;
-	
+	margin: auto;
+	width: 100%;
+
 }
