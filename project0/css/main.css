@@ -1,5 +1,5 @@
 h1 {
-	text-indent: 40px;
+	margin-left: 5%;
 	padding: 40px;
 	padding-bottom: 30px;
 	border-bottom: 1px solid grey;
@@ -9,12 +9,13 @@ ul > li {
 	border-bottom: 1px solid grey;
 	border-left: 5px solid #03cc85;
 	border-radius: 10px;
-	width: 200px;
+	width: 60%;
 	text-indent: 20px;
 	padding: 3px;
 	list-style: none;
 	margin: 10px;
 }
+/*syling for contact page*/
 .contact{
 	background-color: #fafafa;
 	border-bottom: 1px solid grey;
@@ -81,6 +82,11 @@ ul > li {
 		padding: 0;
 		text-align: center;
 		font-size: 30px;
-		
 	}
+	h1{
+		margin-left: 1%;
+	}
+}
+#main{
+	margin-left: 15%;
 }

@@ -1,3 +1,3 @@
 # Project 0
 
-Web Programming with Python and JavaScript
+created my own website showcasing a few of my projects and hobbys.

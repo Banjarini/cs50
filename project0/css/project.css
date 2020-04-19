@@ -17,19 +17,15 @@
 .difficuilt {
   border-left: 3px solid #e60000; }
 
-#design {
-  margin: auto;
-  border-spacing: 10px;
-  }
-
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
+  border-radius: 10px; /* 5px rounded corners */
+  border-left: 10px solid #03cc85;
 }
 
 /* Add rounded corners to the top left and the top right corner of the image */
-img {
+.card img {
   border-radius: 5px 5px 0 0;
   width: 200px;
 }
