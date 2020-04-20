@@ -1,31 +1,27 @@
-.easy, .medium, .difficuilt {
+.easy, .medium, .hard {
   font-size: 18px;
   font-weight: bold;
-  border: 1px solid grey;
-  background-color: #fafafa;
-  padding: 20px;
-  margin: 20px;
-  text-indent: 20px;
-   }
+  background-color: #fafafa; }
 
 .easy {
-  border-left: 3px solid #00b33c; }
+  border-bottom: 3px solid #00b33c; }
 
 .medium {
-  border-left: 3px solid #0000cc; }
+  border-bottom: 3px solid #0000cc; }
 
-.difficuilt {
-  border-left: 3px solid #e60000; }
+.hard {
+  border-bottom: 3px solid #e60000; }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  border-radius: 10px; /* 5px rounded corners */
-  border-spacing: 20px;
-}
+  border-radius: 10px;
+  /* 5px rounded corners */
+  border-spacing: 20px; }
 
 /* Add rounded corners to the top left and the top right corner of the image */
 .card img {
   border-radius: 5px 5px 0 0;
-  width: 200px;
-}
+  width: 200px; }
+
+/*# sourceMappingURL=project.css.map */
