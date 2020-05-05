@@ -1,5 +1,6 @@
 import os
-
+import requests
+import json
 from flask import Flask, session, render_template, request, flash, redirect, url_for
 from flask_session import Session
 from sqlalchemy import create_engine
@@ -31,10 +32,11 @@ class Book():
         self.review = []
 class Review(object):
      """docstring for Review"""
-     def __init__(self, username, comment, isbn):
+     def __init__(self, isbn, rating, review, username):
          self.username = username
-         self.comment = comment
-         self.isbn
+         self.rating = rating
+         self.review = review
+         self.isbn = isbn
                                   
 @app.route("/")
 def index():
@@ -55,15 +57,15 @@ def create():
         db.execute("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)",{"username": username, "email": email, "password": hash})
     except:
         flash("that username already exists")
-        render_template("register.html", message="that username already exists")
+        return render_template("register.html", message="that username already exists")
     else:
         db.commit()
         flash("Register successful")
-        return render_template("index.html")
         session["logged_in"] = True
         session['username'] = username
+        return render_template("index.html")
 
-    pass
+    return
     
 
 @app.route("/register")
@@ -83,7 +85,7 @@ def login():
     db_hash = db_hash[0].encode("utf-8")
     if pbkdf2_sha256.verify(password, db_hash):
         session["logged_in"] = True
-        session['username'] = username
+        session["username"] = username
         flash("Logged in successful")
         return redirect(url_for('index'), "303")
     else:
@@ -115,26 +117,53 @@ def search():
         
 @app.route('/book/<string:isbn>', methods=["POST", "GET"])
 def book(isbn):
-    
-    review =[]
+    if not session.get("logged_in"):
+        flash("You are not logged in")
+        return redirect(url_for('index'), "303")
+    review_array =[]
     reviews = db.execute("SELECT * FROM reviews WHERE isbn=:isbn",{"isbn":isbn}).fetchall()
     results = db.execute("SELECT * FROM books WHERE isbn=:isbn",{"isbn":isbn}).fetchone()
-    
-
     for review in reviews:
-        new_review = Review(review.isbn, review.comment, review.username)
-        review.append(new_review)
+        new_review = Review(review.isbn, review.rating, review.review, review.username)
+        review_array.insert(0,new_review)
+    
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "lTA17O0ICb23S8LkAwHWQ", "isbns": isbn})
+    if res.status_code != 200:
+        raise Exception("ERROR: API request unsuccessful.")
+    data = res.json()
+    goodreads_rating = data["books"][0]['average_rating']
+    goodreads_rating_count = data["books"][0]['work_ratings_count']
+    
+    return render_template("book.html", book=results, comments=review_array, goodreads_rating=goodreads_rating, goodreads_rating_count=goodreads_rating_count)
 
-    # new_book = Book(results.isbn, results.title, results.author, results.year)
+@app.route('/<string:isbn>', methods=["POST"])
+def review(isbn):
+    if not session.get("logged_in"):
+        flash("You are not logged in")
+        return redirect(url_for('index'), "303")
+    else:
+        user_id = session["username"]
+        book_id = isbn
+        rating = request.form.get("star")
+        review = request.form.get("review")
+        message = ""
+        display_message = False
+        test = []
+        try:
+            test = db.execute("SELECT username FROM reviews WHERE isbn=:isbn",{"isbn":isbn}).fetchone()
+            if user_id in test:
+                message="sorry you have already reviewed this book :("
+                display_message=True 
+        except:
+            try:
+                db.execute("INSERT INTO reviews (isbn, review, username, rating) VALUES ( :isbn, :review, :username, :rating)", {"isbn": isbn, "review": review, "username": user_id, "rating": rating})
+                db.commit()
+                return redirect(url_for('book', isbn=isbn, message="message", display_message="display_message"), "303")
+            except:
+                message="please enter a rating and comment"
+                display_message=True
         
-    return render_template("book.html", book=results, comments=review)
+        return redirect(url_for('book', isbn=isbn, message="message", display_message="display_message"), "303")
 
-@app.route('/book/comment/<string:isbn>', methods=["POST"])
-def comment(isbn):
-    comment = request.form.get("comment")
-    if comment != None:
-        db.execute("INSERT INTO reviews (isbn, review) VALUES ('isbn', 'review')",
-            {"isbn": isbn, "review": comment, "user": session['username']})
-    book(isbn)
 
 

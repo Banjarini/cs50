@@ -4,26 +4,95 @@
 {% endblock %}
 
 {% block body %}
-<div>
-    <form role="form" method='POST' action="search">
+<!-- <div>
+    <form role="form" method='POST' action="url_for('search')">
         <div class="form-group">
             <input type="text" class="form-control" name="search" placeholder="Search" style="max-width: 300px;">
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>  
     </form>
-</div>
+</div> --> 
 <div>
     <div>
+        <p>Goodreads rating {{ goodreads_rating }}
+            Number of ratings {{ goodreads_rating_count }}</p>
         <h1><b>{{ book.title }}</b></h1>
-        <p>{{ book.author }}</p>
-        <p>{{ book.isbn }}</p>
-        <p>year: {{ book.year }}</p>
+        <p>Author: {{ book.author }}</p>
+        <p>Isbn: {{ book.isbn }}</p>
+        <p>Year: {{ book.year }}</p>
     </div>
 </div>
 <div>
-    <!-- <form action="{{ url_for('comment',isbn=book.isbn) }}" method="POST">
-        <input type="text" name="comment" placeholder="comment on this book">
-        <button class="btn btn-default">submit</button>
-    </form> -->
+    <span><h1>Rate this book</h1></span>
+    {% if display_message is sameas True %}
+    <div class="alert alert-warning">
+    <strong>Error!</strong> {{ message }}.
+    </div>
+    {% endif %}
+    
+    <form action="{{ url_for('review',isbn=book.isbn) }}" method="POST">
+        <div class="stars">
+            <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
+            <label class="star star-5" for="star-5"></label>
+            <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
+            <label class="star star-4" for="star-4"></label>
+            <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
+            <label class="star star-3" for="star-3"></label>
+            <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
+            <label class="star star-2" for="star-2"></label>
+            <input class="star star-1" id="star-1" type="radio" name="star" value="1" />
+            <label class="star star-1" for="star-1"></label>
+        </div>
+        <div>
+            <input type="text" name="review" placeholder="comment on this book">
+            <button class="btn btn-primary">submit</button>
+        </div>
+    </form>
+</div>
+<div>
+    <h1>Reviews for this book</h1>
+    {% for i in comments %}
+        {% if i.rating is sameas 1 %}
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        {% endif %}
+        {% if i.rating is sameas 2 %}
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        {% endif %}
+        {% if i.rating is sameas 3 %}
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        {% endif %}
+        {% if i.rating is sameas 4 %}
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+        {% endif %}
+        {% if i.rating is sameas 5 %}
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+        {% endif %}
+
+        <div class="container">
+            <p>{{ i.username}} said:{{ i.review}}</p>
+        </div>
+        {% else %}
+            <li>no reviews yet</li>
+    {% endfor %}
 </div>
 {% endblock %}

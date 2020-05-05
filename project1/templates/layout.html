@@ -4,14 +4,15 @@
         <title>project1</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <div class="container">
             <div class="header">
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <!-- <li><a href="{{ url_for('register') }}">Home</a></li> -->
+                    <!-- <li><a href="#news">News</a></li>
+                    <li><a href="#contact">Contact</a></li> -->
                     <li style="float:right"><a class="active" href="{{ url_for('logout') }}">Log Out</a></li>
                 </ul> 
             </div>
