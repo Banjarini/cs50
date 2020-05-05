@@ -1,7 +1,6 @@
 import os
 import requests
-import json
-from flask import Flask, session, render_template, request, flash, redirect, url_for
+from flask import Flask, session, render_template, request, flash, redirect, url_for, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -165,5 +164,31 @@ def review(isbn):
         
         return redirect(url_for('book', isbn=isbn, message="message", display_message="display_message"), "303")
 
-
-
+@app.route('/api/<string:isbn>')
+def api(isbn):
+    res = db.execute("SELECT * FROM books WHERE isbn=:isbn",{"isbn":isbn}).fetchone()
+    goodreads = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "lTA17O0ICb23S8LkAwHWQ", "isbns": isbn})
+    
+    if res is None:
+        return jsonify(
+            {
+                "error_code": 404,
+                "error_message": "Not Found"
+            }
+        ), 404
+    data = goodreads.json()
+    goodreads_rating = data["books"][0]['average_rating']
+    goodreads_rating_count = data["books"][0]['work_ratings_count']
+    book = Book(res.isbn, res.title, res.author, res.year)
+    result = {
+        "title": book.title,
+        "author": book.author,
+        "year": book.year,
+        "isbn": book.isbn,
+        "review_count": goodreads_rating_count,
+        "average_score": goodreads_rating
+    }
+    return jsonify(result)
+    
+    
+    
