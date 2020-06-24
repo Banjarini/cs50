@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>Hi {{ user.username }}!</h1>
+  <a href="{% url 'logout' %}" class="btn btn-primary">logout</a>
+  <a href="{% url 'password_reset' %}" class="btn btn-primary">reset password</a>
+  {% for category in categories %}
+        <li>
+            
+            {{ category.name }}
+            <!-- <img src="{{ category.cover }}" height="100px" alt="{{ category.name }}">  -->
+        </li>
+    {% endfor %}
+{% else %}
+  <h1>You are not logged in</h1>
+  <a href="{% url 'login' %}" class="btn btn-primary">login</a>
+  <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+{% endif %}
+{% endblock %}
