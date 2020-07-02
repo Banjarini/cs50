@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h1 class="column">You are already logged in</h1>
+
+{% else %}
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="container login-form">
+        <h2 class="login-title">- Please Login -</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form>
+                    {% if message %}
+                        <div class="error_message">{{ message }}</div>
+                    {% endif %}
+                    <div class="input-group login-userinput">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                        <input id="txtUser" type="text" class="form-control" name="username" placeholder="Username">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            <input  id="txtPassword" type="password" class="form-control" name="password" placeholder="Password">
+                        </span>  
+                    </div>
+                        <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i>Login</button>
+                        <div class="checkbox login-options">
+                        <a href="{% url 'password_reset' %}" class="login-forgot">Forgot Username/Password?</a>
+                    </div>      
+                </form>         
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endif %}
+{% endblock %}

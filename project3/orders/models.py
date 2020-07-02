@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Category(models.Model):
     name=models.CharField(max_length=64)
-    cover = models.ImageField(upload_to='images/', null=True)
+    cover = models.ImageField(upload_to='orders/images/', null=True)
     def __str__(self):
         return f"{self.name}"
         

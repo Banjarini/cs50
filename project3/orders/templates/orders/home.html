@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %} 
+<div class="row">
+    {% for category in categories %}
+        <div class="column">
+            <h2>{{category.name}}</h2>
+            <img style="width: 100px" src="{{ category.cover.url}}" alt="{{ post.title }}">
+            <!-- <img src="" height="100px" alt="{{ category.name }}">  -->
+        </div>
+    {% endfor %}
+</div> 
+{% else %}
+<div class="row">
+    <div class="column"> 
+        <h1>You are not logged in</h1>
+        <a href="{% url 'login' %}" class="btn btn-primary">login</a>
+        <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

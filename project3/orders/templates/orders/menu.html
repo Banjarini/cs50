@@ -4,13 +4,11 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  <h1>Hi {{ user.username }}!</h1>
-  <a href="{% url 'logout' %}" class="btn btn-primary">logout</a>
-  <a href="{% url 'password_reset' %}" class="btn btn-primary">reset password</a>
-  {% for category in categories %}
+  {% for pizza in pizzas %}
         <li>
-            
-            {{ category.name }}
+            {{ pizza.name }}
+            Small {{ pizza.small }}
+            Large {{ pizza.large }}
             <!-- <img src="{{ category.cover }}" height="100px" alt="{{ category.name }}">  -->
         </li>
     {% endfor %}
