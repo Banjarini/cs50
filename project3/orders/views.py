@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.urls import reverse
 from .models import *
@@ -15,12 +15,13 @@ def index(request):
         }
     return render(request, "orders/home.html", context)
 
-def menu(request , pizza_type):
+def menu(request , menu):
     try:
-        pizza = pizza_type.objects.all()
-    except pizza_type.DoesNotExist:
+        menu = Category.objects.get(pk=menu)
+    except:
         raise Http404("Pizza does not exist")
     context = {
-        "pizzas": pizza
+        "menu": menu.category.all(),
+
         }
     return render(request, "orders/menu.html", context)

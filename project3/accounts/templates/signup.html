@@ -4,19 +4,7 @@
 
 {% block content %}
     
-    <!-- <div class="container login-form">
-        <h2 class="login-title">- Please Login -</h2>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary">Sign up</button>
-                </form>
-            </div>
-        </div>
-    </div> -->
-<form action="{% url 'signup' %}" method="post">
+<form method="post">
     {% csrf_token %}
     <div class="container login-form">
         <h2 class="login-title">- Sign Up -</h2>
@@ -41,15 +29,15 @@
                     </div>
                     <div class="input-group login-userinput">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <input id="txtPassword" type="password" class="form-control" name="last_name" placeholder="Password">
+                        <input id="txtPassword" type="password" class="form-control" name="password1" placeholder="Password">
                     </div>
                     <div class="input-group login-userinput">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <input id="txtPassword" type="password" class="form-control" name="last_name" placeholder="Confirm Password">
+                        <input id="txtPassword" type="password" class="form-control" name="password2" placeholder="Confirm Password">
                     </div>
-                        <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i>Login</button>
+                        <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i>Submit</button>
                         <div class="checkbox login-options">
-                        <a href="{% url 'password_reset' %}" class="login-forgot">Forgot Username/Password?</a>
+                        <!-- <a href="{% url 'password_reset' %}" class="login-forgot">Forgot Username/Password?</a> -->
                     </div>      
                 </form>         
             </div>

@@ -4,14 +4,23 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  {% for pizza in pizzas %}
-        <li>
-            {{ pizza.name }}
-            Small {{ pizza.small }}
-            Large {{ pizza.large }}
-            <!-- <img src="{{ category.cover }}" height="100px" alt="{{ category.name }}">  -->
-        </li>
-    {% endfor %}
+<div class="row">
+  <table class="menu">
+    <thead>
+        <td>Name</td>
+        <td>Small</td>
+        <td>Large</td>
+    </thead>
+    {% for item in menu %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>${{ item.small }}</td>
+            <td>${{ item.large }}</td>
+              <!-- <img src="{{ category.cover }}" height="100px" alt="{{ category.name }}">  -->
+        </tr>
+      {% endfor %}
+  </table>
+</tr>
 {% else %}
   <h1>You are not logged in</h1>
   <a href="{% url 'login' %}" class="btn btn-primary">login</a>

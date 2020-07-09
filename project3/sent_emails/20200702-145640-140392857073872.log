@@ -4,15 +4,15 @@ Content-Transfer-Encoding: 8bit
 Subject: Password reset on 127.0.0.1:8000
 From: webmaster@localhost
 To: jordansherfield@outlook.com
-Date: Wed, 01 Jul 2020 08:50:16 -0000
-Message-ID: <159359341661.3050.12958190205689146995@jordan>
+Date: Thu, 02 Jul 2020 14:56:40 -0000
+Message-ID: <159370180028.19424.9108949677823542485@jordan>
 
 
 You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
 
 Please go to the following page and choose a new password:
 
-http://127.0.0.1:8000/accounts/reset/MQ/5ht-48cf1ded87656273227e/
+http://127.0.0.1:8000/accounts/reset/Mg/5hu-3599a60d4541c099df2d/
 
 Your username, in case you’ve forgotten: jordansherfield@outlook.com
 

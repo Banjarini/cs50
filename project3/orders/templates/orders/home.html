@@ -6,10 +6,11 @@
 {% if user.is_authenticated %} 
 <div class="row">
     {% for category in categories %}
-        <div class="column">
+        <div class="column ">
+            <a href="{% url 'menu' category.id %}">
             <h2>{{category.name}}</h2>
             <img style="width: 100px" src="{{ category.cover.url}}" alt="{{ post.title }}">
-            <!-- <img src="" height="100px" alt="{{ category.name }}">  -->
+            </a>
         </div>
     {% endfor %}
 </div> 

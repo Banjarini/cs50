@@ -4,17 +4,17 @@ Content-Transfer-Encoding: 8bit
 Subject: Password reset on 127.0.0.1:8000
 From: webmaster@localhost
 To: banjarini@gmail.com
-Date: Thu, 25 Jun 2020 14:21:02 -0000
-Message-ID: <159309486211.30842.16015856262178644887@jordan>
+Date: Thu, 02 Jul 2020 17:46:02 -0000
+Message-ID: <159371196236.25709.5081772937570576125@jordan>
 
 
 You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
 
 Please go to the following page and choose a new password:
 
-http://127.0.0.1:8000/accounts/reset/NA/5hn-53ce90ea499e319a9b1f/
+http://127.0.0.1:8000/accounts/reset/MQ/5hu-3c49974edf07b3508696/
 
-Your username, in case you’ve forgotten: banjarini@gmail.com
+Your username, in case you’ve forgotten: jordan
 
 Thanks for using our site!
 

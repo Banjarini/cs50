@@ -6,6 +6,16 @@ class Category(models.Model):
     cover = models.ImageField(upload_to='orders/images/', null=True)
     def __str__(self):
         return f"{self.name}"
+
+class Menu_item(models.Model):
+    category=models.ForeignKey(Category,on_delete=models.CASCADE, related_name="category")
+    name=models.CharField(max_length=64)
+    small=models.DecimalField(max_digits=4,decimal_places=2)
+    large=models.DecimalField(max_digits=4,decimal_places=2, null=True)
+    no_of_toppings=models.DecimalField(max_digits=4,decimal_places=0, null=True)
+    def __str__(self):
+        return f"{self.name} - {self.small} -{self.large}"
+
         
 class Regular_pizza(models.Model):
     name=models.CharField(max_length=64)
@@ -59,6 +69,3 @@ class Dinner_platter(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.small} -{self.large}"
-
-class Regular_pizza_order(models.Model):
-    pizza = models.ForeignKey(Regular_pizza,on_delete=models.CASCADE, related_name="Pizza")

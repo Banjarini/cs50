@@ -24,7 +24,7 @@ SECRET_KEY = 'i0&iq&e9u9h6(4_7%pt2s9)f=c$kso=k$c$w@fi9215s=1q0^d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+ATOMIC = False
 ALLOWED_HOSTS = []
 
 
@@ -124,6 +124,5 @@ LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
-AUTH_USER_MODEL = 'accounts.User'
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'orders/static/')

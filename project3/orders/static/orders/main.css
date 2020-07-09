@@ -41,7 +41,7 @@ body {
 }
 .row {
     background-color: black;
-    opacity: 70%;
+    opacity: 90%;
     padding: 20px;
 }
 /* Clear floats after the columns */
@@ -50,6 +50,23 @@ body {
     display: table;
     clear: both;
 }
-/*.thumbnail {
-	width: 10px;
+.container {
+    color: white;
+}
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+.menu {
+    color: white;
+    
+    text-align:left;
+}
+td {
+    padding:10px;
+    padding-right: 20px;
+    font-size: 40px
 }
